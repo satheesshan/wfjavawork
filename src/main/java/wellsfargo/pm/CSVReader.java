@@ -11,12 +11,11 @@ import java.io.IOException;
 
 public abstract class CSVReader {
 
-    private FileReader fileReader;
-    private BufferedReader bufferedReader;
     private final String filePath;
-
     // todo - chuck size, for memory utilization optimization
     private final int chuckSize;
+    private FileReader fileReader;
+    private BufferedReader bufferedReader;
 
     protected CSVReader(String filePath) {
         this.filePath = filePath;

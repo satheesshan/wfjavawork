@@ -28,36 +28,36 @@ public abstract class CSVWriter {
 
     private OrderType orderType;
 
-   protected CSVWriter(String filePath, String[] headers, OrderType orderType) {
-       this.filePath = filePath;
-       this.headers = headers;
-       this.orderType = orderType;
-   }
+    protected CSVWriter(String filePath, String[] headers, OrderType orderType) {
+        this.filePath = filePath;
+        this.headers = headers;
+        this.orderType = orderType;
+    }
 
-   public void initWriter() throws IOException {
+    public void initWriter() throws IOException {
 
-       fileWriter = new FileWriter(filePath);
-       bufferedWriter = new BufferedWriter(fileWriter);
-       csvFormat = CSVFormat.DEFAULT.builder()
-               .setHeader(headers)
-               .build();
-   }
+        fileWriter = new FileWriter(filePath);
+        bufferedWriter = new BufferedWriter(fileWriter);
+        csvFormat = CSVFormat.DEFAULT.builder()
+                .setHeader(headers)
+                .build();
+    }
 
     public void writeToFile(List<Transaction> transactionList, OMSRecordWriter recordWriter, Map<String, Security> securityMap, Map<String, Portfolio> portfolioMap) throws IOException {
-       this.initWriter();
-       writer = new CSVPrinter(bufferedWriter, csvFormat);
+        this.initWriter();
+        writer = new CSVPrinter(bufferedWriter, csvFormat);
 
         for (Transaction t : transactionList) {
-           if( t.getOrderType() == orderType) {
+            if (t.getOrderType() == orderType) {
                 recordWriter.write(t, writer, securityMap, portfolioMap);
-           }
+            }
         }
         writer.flush();
         closeFile();
     }
 
-   public void closeFile() throws IOException {
-       writer.close();
-       bufferedWriter.close();
-   }
+    public void closeFile() throws IOException {
+        writer.close();
+        bufferedWriter.close();
+    }
 }

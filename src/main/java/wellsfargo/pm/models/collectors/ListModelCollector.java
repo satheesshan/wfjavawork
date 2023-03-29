@@ -9,7 +9,7 @@ public class ListModelCollector<T> implements ModelCollector<T> {
 
     @Override
     public void collect(T model) {
-            listOfModels.add(model);
+        listOfModels.add(model);
     }
 
     public List<T> getListOfModels() {

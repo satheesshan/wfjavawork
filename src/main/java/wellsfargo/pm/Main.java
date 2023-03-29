@@ -17,8 +17,7 @@ public class Main {
     public static void main(String[] args) {
 
         // Note keeping the flow for setting the CSV paths CRUDE!
-        if(args == null)
-        {
+        if (args == null) {
             System.out.println("Please Provide a Valid Path");
             System.exit(0);
         }
@@ -30,9 +29,9 @@ public class Main {
         }
 
         // specialized classes setting up the correct Model Pojo mappers and Collections of Model Pojo's from input CSV'
-        SecurityCSVReader securityFileReader = new SecurityCSVReader(folderPath+"\\securities.csv");
-        PortfolioCSVReader portfolioFileReader = new PortfolioCSVReader(folderPath+"\\portfolios.csv");
-        TransactionCSVReader transactionFileReader = new TransactionCSVReader(folderPath+"\\transactions.csv");
+        SecurityCSVReader securityFileReader = new SecurityCSVReader(folderPath + "\\securities.csv");
+        PortfolioCSVReader portfolioFileReader = new PortfolioCSVReader(folderPath + "\\portfolios.csv");
+        TransactionCSVReader transactionFileReader = new TransactionCSVReader(folderPath + "\\transactions.csv");
 
         try {
             // Load the data into Business Model/Pojos
@@ -41,14 +40,14 @@ public class Main {
             List<Transaction> transactionList = transactionFileReader.getTransactions();
 
             // specialized classes setting up the correct CSV writters for OMS Types
-            AAAOMSWriter aaaomsWriter = new AAAOMSWriter(folderPath+"\\oms.aaa");
-            aaaomsWriter.export(transactionList, securityMap,portfolioMap);
+            AAAOMSWriter aaaomsWriter = new AAAOMSWriter(folderPath + "\\oms.aaa");
+            aaaomsWriter.export(transactionList, securityMap, portfolioMap);
 
-            BBBOMSWriter bbbomsWriter = new BBBOMSWriter(folderPath+"\\oms.bbb");
+            BBBOMSWriter bbbomsWriter = new BBBOMSWriter(folderPath + "\\oms.bbb");
             bbbomsWriter.export(transactionList, securityMap, portfolioMap);
 
-            CCCOMSWriter cccomsWriter = new CCCOMSWriter(folderPath+"\\oms.ccc");
-            cccomsWriter.export(transactionList,securityMap,portfolioMap);
+            CCCOMSWriter cccomsWriter = new CCCOMSWriter(folderPath + "\\oms.ccc");
+            cccomsWriter.export(transactionList, securityMap, portfolioMap);
 
 
         } catch (FileNotFoundException e) {

@@ -1,18 +1,12 @@
 package wellsfargo.pm;
 
-import org.apache.commons.csv.CSVRecord;
 import wellsfargo.pm.models.Transaction;
 import wellsfargo.pm.models.collectors.ListModelCollector;
-import wellsfargo.pm.models.collectors.ModelCollector;
-import wellsfargo.pm.models.constants.OrderType;
-import wellsfargo.pm.models.constants.TransactionType;
 import wellsfargo.pm.models.mappers.ModelMapper;
 import wellsfargo.pm.models.mappers.TransactionModelMapper;
 
 import java.io.IOException;
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.StreamSupport;
 
 public class TransactionCSVReader extends CSVReader {
 
